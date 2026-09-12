@@ -9,6 +9,7 @@ import {
   Download,
   Hand,
   Laptop,
+  Loader2,
   Menu,
   Network,
   Plus,
@@ -143,6 +144,7 @@ function HandNotify() {
   const [toast, setToast] = useState("Ready to send");
   const [activity, setActivity] = useState("08:42 · Hand moved — mouse cursor moved");
   const [messageIndex, setMessageIndex] = useState(0);
+  const [isDownloading, setIsDownloading] = useState(false);
   const messages = [
     "Your hand has something to say.",
     "Their cursor is suddenly possessed.",
@@ -163,6 +165,7 @@ function HandNotify() {
 
   const handleDownload = async () => {
     try {
+      setIsDownloading(true);
       setToast("Starting download...");
       const parts = ["/chunks/part1", "/chunks/part2", "/chunks/part3", "/chunks/part4"];
       const buffers = [];
@@ -186,6 +189,8 @@ function HandNotify() {
     } catch (error) {
       console.error(error);
       setToast("Download failed. See console.");
+    } finally {
+      setIsDownloading(false);
     }
   };
 
@@ -224,7 +229,9 @@ function HandNotify() {
                 <p className="mt-5 text-sm leading-6 text-muted-foreground">Hand Notify uses computer vision to turn your hand movements into live mouse control on your friend's computer.</p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Button onClick={() => scrollTo("dashboard")} className="h-11 bg-primary px-5 text-primary-foreground shadow-signal hover:bg-primary/90"><Hand /> Start Hand Notify</Button>
-                  <Button variant="default" onClick={handleDownload} className="h-11 bg-foreground text-background hover:bg-foreground/85"><Download /> Download App</Button>
+                  <Button variant="default" onClick={handleDownload} disabled={isDownloading} className="h-11 bg-foreground text-background hover:bg-foreground/85">
+                    {isDownloading ? <><Loader2 className="animate-spin" /> Downloading...</> : <><Download /> Download App</>}
+                  </Button>
                   <Button variant="outline" onClick={() => scrollTo("how-it-works")} className="h-11 border-border bg-background"><CircleDot /> See How It Works</Button>
                 </div>
                 <p className="mt-6 font-mono text-[10px] uppercase leading-5 text-muted-foreground">No clicking. No touching. Just move.</p>
