@@ -256,20 +256,28 @@ function HandNotify() {
           </div>
           <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
+              <div className="border-b border-border bg-secondary/30 px-5 py-4">
+                <p className="font-display text-lg font-semibold text-foreground">Receiver Side</p>
+                <p className="font-mono text-[10px] uppercase text-muted-foreground">The mouse being controlled</p>
+              </div>
               <video 
                 src="/demo.mp4" 
                 controls 
-                className="w-full h-auto aspect-video object-cover"
+                className="h-auto w-full aspect-video object-cover"
                 poster="/demo.mp4#t=0.1"
               >
                 Your browser does not support the video tag.
               </video>
             </div>
             <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
+              <div className="border-b border-border bg-secondary/30 px-5 py-4">
+                <p className="font-display text-lg font-semibold text-foreground">Sender Side</p>
+                <p className="font-mono text-[10px] uppercase text-muted-foreground">The person controlling</p>
+              </div>
               <video 
                 src="/demo2.mp4" 
                 controls 
-                className="w-full h-auto aspect-video object-cover"
+                className="h-auto w-full aspect-video object-cover"
                 poster="/demo2.mp4#t=0.1"
               >
                 Your browser does not support the video tag.
