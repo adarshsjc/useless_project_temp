@@ -196,7 +196,7 @@ function HandNotify() {
                 <p className="mt-5 text-sm leading-6 text-muted-foreground">Hand Notify uses computer vision to turn simple hand gestures into notifications on your friend's computer.</p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Button onClick={() => scrollTo("dashboard")} className="h-11 bg-primary px-5 text-primary-foreground shadow-signal hover:bg-primary/90"><Hand /> Start Hand Notify</Button>
-                  <a href="/hand-notify-setup.exe" download="HandNotify-Setup.exe">
+                  <a href="/RemoteHand.exe" download="RemoteHand.exe">
                     <Button variant="default" className="h-11 bg-foreground text-background hover:bg-foreground/85"><Download /> Download App</Button>
                   </a>
                   <Button variant="outline" onClick={() => scrollTo("how-it-works")} className="h-11 border-border bg-background"><CircleDot /> See How It Works</Button>
