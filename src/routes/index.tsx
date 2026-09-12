@@ -106,18 +106,34 @@ function HandSkeleton({ compact = false }: { compact?: boolean }) {
 
 function HeroDiagram() {
   return (
-    <div className="relative min-h-[430px] flex items-center justify-center overflow-hidden rounded-3xl bg-white p-5 sm:p-7">
-      <div className="absolute top-5 left-5 right-5 flex items-center justify-between font-mono text-[10px] uppercase text-black/50 z-10">
-        <span>Fig. 01 — Hand Control</span>
-        <span className="flex items-center gap-2 text-black"><Dot /> Signal live</span>
+    <div className="relative min-h-[430px] overflow-hidden rounded-3xl bg-secondary p-5 sm:p-7">
+      <div className="flex items-center justify-between font-mono text-[10px] uppercase text-muted-foreground">
+        <span>Fig. 01 — Hand → signal → receipt</span>
+        <span className="flex items-center gap-2 text-primary"><Dot /> Signal live</span>
       </div>
-      <img 
-        src="/heroimage.jpg" 
-        alt="Hand figure" 
-        className="w-full h-full max-h-[350px] object-contain scale-[1.25] sm:scale-[1.4]"
-      />
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 text-white px-3 py-2 text-center font-mono text-[9px] uppercase leading-5 backdrop-blur-sm z-10 shadow-lg">
-        Hand detected <ChevronRight className="inline size-3 text-white/50" /> Hand position tracked <ChevronRight className="inline size-3 text-white/50" /> Mouse cursor moves
+      <div className="relative mt-7 h-[325px]">
+        <div className="absolute left-0 top-24 z-10 w-[42%] max-w-56 rounded-2xl border border-border bg-background p-3 shadow-panel sm:left-4 sm:top-28">
+          <div className="flex items-center justify-between font-mono text-[9px] uppercase text-muted-foreground"><span>Your PC</span><Camera size={13} /></div>
+          <div className="mt-3 aspect-[4/3] rounded-xl bg-foreground p-3"><HandSkeleton /></div>
+          <div className="mt-2 flex justify-between font-mono text-[9px]"><span>Gesture · WAVE</span><span className="text-primary">97%</span></div>
+        </div>
+        <div className="absolute right-0 top-14 z-10 w-[42%] max-w-56 rounded-2xl border border-border bg-background p-3 shadow-panel sm:right-4 sm:top-20">
+          <div className="flex items-center justify-between font-mono text-[9px] uppercase text-muted-foreground"><span>Friend's PC</span><Laptop size={13} /></div>
+          <div className="relative mt-3 aspect-[4/3] overflow-hidden rounded-xl bg-foreground p-3">
+            <div className="notification-in absolute inset-x-3 bottom-3 rounded-lg bg-background p-3 shadow-panel">
+              <div className="flex items-center gap-2 font-mono text-[8px] uppercase text-primary"><Activity size={11} /> Remote Mouse</div>
+              <p className="mt-1 text-[10px] font-semibold text-foreground">Your mouse is being controlled remotely.</p>
+            </div>
+          </div>
+          <div className="mt-2 flex justify-between font-mono text-[9px]"><span>192.168.1.14</span><span className="text-primary">RECEIVED</span></div>
+        </div>
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 700 325" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M145 210 C 280 45, 430 35, 560 155" className="network-path" />
+        </svg>
+        <span className="signal-packet absolute size-3 rounded-full bg-primary shadow-signal" />
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-background/80 px-3 py-2 text-center font-mono text-[9px] uppercase leading-5 text-muted-foreground backdrop-blur-sm">
+          Hand detected <ChevronRight className="inline size-3 text-primary" /> Hand position tracked <ChevronRight className="inline size-3 text-primary" /> Mouse cursor moves
+        </div>
       </div>
     </div>
   );
