@@ -161,6 +161,34 @@ function HandNotify() {
     window.setTimeout(() => setToast("Ready to send"), 2800);
   };
 
+  const handleDownload = async () => {
+    try {
+      setToast("Starting download...");
+      const parts = ["/chunks/part1", "/chunks/part2", "/chunks/part3", "/chunks/part4"];
+      const buffers = [];
+      for (let i = 0; i < parts.length; i++) {
+        setToast(`Downloading part ${i + 1} of ${parts.length}...`);
+        const res = await fetch(parts[i]);
+        if (!res.ok) throw new Error(`Failed to fetch part ${i + 1}`);
+        const buf = await res.arrayBuffer();
+        buffers.push(buf);
+      }
+      setToast("Assembling file...");
+      const blob = new Blob(buffers, { type: "application/x-msdownload" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "RemoteHand.exe";
+      a.click();
+      URL.revokeObjectURL(url);
+      setToast("Download complete!");
+      window.setTimeout(() => setToast("Ready to send"), 2800);
+    } catch (error) {
+      console.error(error);
+      setToast("Download failed. See console.");
+    }
+  };
+
   return (
     <div id="top" className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur-xl">
@@ -196,9 +224,7 @@ function HandNotify() {
                 <p className="mt-5 text-sm leading-6 text-muted-foreground">Hand Notify uses computer vision to turn simple hand gestures into notifications on your friend's computer.</p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Button onClick={() => scrollTo("dashboard")} className="h-11 bg-primary px-5 text-primary-foreground shadow-signal hover:bg-primary/90"><Hand /> Start Hand Notify</Button>
-                  <a href="/RemoteHand.exe" download="RemoteHand.exe">
-                    <Button variant="default" className="h-11 bg-foreground text-background hover:bg-foreground/85"><Download /> Download App</Button>
-                  </a>
+                  <Button variant="default" onClick={handleDownload} className="h-11 bg-foreground text-background hover:bg-foreground/85"><Download /> Download App</Button>
                   <Button variant="outline" onClick={() => scrollTo("how-it-works")} className="h-11 border-border bg-background"><CircleDot /> See How It Works</Button>
                 </div>
                 <p className="mt-6 font-mono text-[10px] uppercase leading-5 text-muted-foreground">No typing. No calling. Just wave.</p>
