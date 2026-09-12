@@ -328,6 +328,9 @@ function HandNotify() {
 
         <section id="installation" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-12 sm:px-8">
           <p className="console-label text-primary">Getting Started</p><h2 className="mt-2 font-display text-4xl font-semibold">Installation & Usage</h2>
+          <div className="mt-5 rounded-lg border border-primary/20 bg-primary/10 p-4 text-sm text-primary">
+            <strong>Note:</strong> Since this is a custom indie app, Windows might show a blue "Windows protected your PC" popup when you open it. Just click <strong>More info</strong>, and then click <strong>Run anyway</strong>.
+          </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <h3 className="font-display text-2xl font-semibold">1. On your friend's PC (Receiver)</h3>
