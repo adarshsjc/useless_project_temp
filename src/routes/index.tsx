@@ -36,12 +36,12 @@ export const Route = createFileRoute("/")({
       { title: "HAND NOTIFY — Gesture Notifications" },
       {
         name: "description",
-        content: "Turn webcam hand gestures into instant local-network notifications for your friends.",
+        content: "Control your friend's mouse over the local network using hand gestures.",
       },
       { property: "og:title", content: "HAND NOTIFY — Gesture Notifications" },
       {
         property: "og:description",
-        content: "Get their attention with your hands. No typing, no calling, just wave.",
+        content: "Control their mouse with your hands. No typing, no clicking, just move.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -121,8 +121,8 @@ function HeroDiagram() {
           <div className="flex items-center justify-between font-mono text-[9px] uppercase text-muted-foreground"><span>Friend's PC</span><Laptop size={13} /></div>
           <div className="relative mt-3 aspect-[4/3] overflow-hidden rounded-xl bg-foreground p-3">
             <div className="notification-in absolute inset-x-3 bottom-3 rounded-lg bg-background p-3 shadow-panel">
-              <div className="flex items-center gap-2 font-mono text-[8px] uppercase text-primary"><Bell size={11} /> Hand Notify</div>
-              <p className="mt-1 text-[10px] font-semibold text-foreground">Your friend is trying to get your attention.</p>
+              <div className="flex items-center gap-2 font-mono text-[8px] uppercase text-primary"><Activity size={11} /> Remote Mouse</div>
+              <p className="mt-1 text-[10px] font-semibold text-foreground">Your mouse is being controlled remotely.</p>
             </div>
           </div>
           <div className="mt-2 flex justify-between font-mono text-[9px]"><span>192.168.1.14</span><span className="text-primary">RECEIVED</span></div>
@@ -132,7 +132,7 @@ function HeroDiagram() {
         </svg>
         <span className="signal-packet absolute size-3 rounded-full bg-primary shadow-signal" />
         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-background/80 px-3 py-2 text-center font-mono text-[9px] uppercase leading-5 text-muted-foreground backdrop-blur-sm">
-          Hand detected <ChevronRight className="inline size-3 text-primary" /> Gesture recognized <ChevronRight className="inline size-3 text-primary" /> Notification sent
+          Hand detected <ChevronRight className="inline size-3 text-primary" /> Hand position tracked <ChevronRight className="inline size-3 text-primary" /> Mouse cursor moves
         </div>
       </div>
     </div>
@@ -141,13 +141,13 @@ function HeroDiagram() {
 
 function HandNotify() {
   const [toast, setToast] = useState("Ready to send");
-  const [activity, setActivity] = useState("08:42 · Wave detected — notification sent");
+  const [activity, setActivity] = useState("08:42 · Hand moved — mouse cursor moved");
   const [messageIndex, setMessageIndex] = useState(0);
   const messages = [
     "Your hand has something to say.",
-    "Your friend still hasn't noticed.",
-    "Wave harder. Scientifically questionable, but emotionally valid.",
-    "Typing is overrated.",
+    "Their cursor is suddenly possessed.",
+    "Move your hand. Their mouse moves.",
+    "Mice are overrated.",
   ];
 
   useEffect(() => {
@@ -156,8 +156,8 @@ function HandNotify() {
   }, [messages.length]);
 
   const notify = (device = "Friend's Laptop") => {
-    setToast(`Notification sent to ${device}`);
-    setActivity(`Now · Wave detected — sent to ${device}`);
+    setToast(`Mouse control sent to ${device}`);
+    setActivity(`Now · Hand moved — controlled ${device}`);
     window.setTimeout(() => setToast("Ready to send"), 2800);
   };
 
@@ -220,14 +220,14 @@ function HandNotify() {
             <div className="col-span-12 flex flex-col gap-4 lg:col-span-4">
               <div className="flex-1 rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
                 <p className="console-label text-primary">Hand Notify</p>
-                <h1 className="mt-4 font-display text-5xl font-semibold leading-[0.94] sm:text-6xl lg:text-5xl">Get Their Attention.<br /><span className="text-muted-foreground">With Your Hands.</span></h1>
-                <p className="mt-5 text-sm leading-6 text-muted-foreground">Hand Notify uses computer vision to turn simple hand gestures into notifications on your friend's computer.</p>
+                <h1 className="mt-4 font-display text-5xl font-semibold leading-[0.94] sm:text-6xl lg:text-5xl">Take Over Their Mouse.<br /><span className="text-muted-foreground">With Your Hands.</span></h1>
+                <p className="mt-5 text-sm leading-6 text-muted-foreground">Hand Notify uses computer vision to turn your hand movements into live mouse control on your friend's computer.</p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Button onClick={() => scrollTo("dashboard")} className="h-11 bg-primary px-5 text-primary-foreground shadow-signal hover:bg-primary/90"><Hand /> Start Hand Notify</Button>
                   <Button variant="default" onClick={handleDownload} className="h-11 bg-foreground text-background hover:bg-foreground/85"><Download /> Download App</Button>
                   <Button variant="outline" onClick={() => scrollTo("how-it-works")} className="h-11 border-border bg-background"><CircleDot /> See How It Works</Button>
                 </div>
-                <p className="mt-6 font-mono text-[10px] uppercase leading-5 text-muted-foreground">No typing. No calling. Just wave.</p>
+                <p className="mt-6 font-mono text-[10px] uppercase leading-5 text-muted-foreground">No clicking. No touching. Just move.</p>
               </div>
               <div className="rounded-3xl bg-secondary p-5">
                 <div className="flex items-center justify-between"><span className="console-label">Hand detection · 21 pts</span><span className="font-mono text-[10px] text-primary">WAVE</span></div>
@@ -258,8 +258,8 @@ function HandNotify() {
             </div>
             <div className="col-span-12 flex flex-col rounded-3xl border border-border bg-card p-6 shadow-soft lg:col-span-4">
               <p className="console-label">Gesture detected</p>
-              <div className="my-auto py-10 text-center"><Hand className="mx-auto size-16 text-primary" strokeWidth={1.3} /><p className="mt-4 font-display text-5xl font-semibold">WAVE</p><p className="mt-2 font-mono text-[10px] uppercase text-muted-foreground">Action · send notification</p></div>
-              <Button onClick={() => notify()} className="h-12 bg-primary text-primary-foreground shadow-signal hover:bg-primary/90"><Send /> Notify Friend</Button>
+              <div className="my-auto py-10 text-center"><Hand className="mx-auto size-16 text-primary" strokeWidth={1.3} /><p className="mt-4 font-display text-5xl font-semibold">MOVE</p><p className="mt-2 font-mono text-[10px] uppercase text-muted-foreground">Action · move mouse</p></div>
+              <Button onClick={() => notify()} className="h-12 bg-primary text-primary-foreground shadow-signal hover:bg-primary/90"><Send /> Move Their Mouse</Button>
               <div className="mt-3 flex items-center justify-center gap-2 font-mono text-[10px] uppercase text-muted-foreground"><Dot /> {toast}</div>
             </div>
           </div>
@@ -280,13 +280,13 @@ function HandNotify() {
         </section>
 
         <section id="gestures" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-12 sm:px-8">
-          <p className="console-label text-primary">Gesture library</p><h2 className="mt-2 font-display text-4xl font-semibold">Your Hands Are Now Notifications.</h2>
+          <p className="console-label text-primary">Gesture library</p><h2 className="mt-2 font-display text-4xl font-semibold">Your Hands Are Now Their Mouse.</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["01","WAVE","Send notification","Wave your hand to get your friend's attention."],
-              ["02","OPEN HAND","Important notification","Send a stronger attention alert."],
-              ["03","POINT","Quick ping","Send a simple “Hey, look here” notification."],
-              ["04","PINCH","Cancel notification","Cancel the current notification."],
+              ["01","MOVE HAND","Move cursor","Move your hand in the air to steer their mouse."],
+              ["02","PINCH","Left Click","Pinch your fingers to perform a left click."],
+              ["03","OPEN HAND","Right Click","Open your hand to perform a right click."],
+              ["04","FIST","Stop Control","Make a fist to pause remote control."],
             ].map(([n,name,action,desc]) => <article key={name} className="lift-card rounded-3xl border border-border bg-card p-5 shadow-soft">
               <div className="flex items-start justify-between"><span className="font-mono text-sm font-bold text-primary">{n}</span><HandSkeleton compact /></div>
               <h3 className="font-display text-xl font-semibold">{name}</h3><p className="mt-1 text-sm font-semibold text-primary">{action}</p><p className="mt-3 text-sm leading-6 text-muted-foreground">{desc}</p>
@@ -296,9 +296,9 @@ function HandNotify() {
 
         <section className="mx-auto grid max-w-7xl grid-cols-12 gap-4 px-5 py-12 sm:px-8">
           <div className="col-span-12 rounded-3xl bg-secondary p-6 lg:col-span-7 sm:p-8">
-            <p className="console-label">Notification preview</p><h2 className="mt-2 font-display text-3xl font-semibold">How it lands.</h2>
+            <p className="console-label">Control preview</p><h2 className="mt-2 font-display text-3xl font-semibold">How it lands.</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {["Your friend wants your attention.","Someone waved at your webcam."].map((text, i) => <div key={text} className="notification-in rounded-2xl border border-border bg-background p-5 shadow-panel" style={{ animationDelay: `${i * 180}ms` }}><div className="flex items-center gap-2"><span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground"><Bell size={16} /></span><div><p className="font-mono text-[9px] uppercase text-muted-foreground">Hand Notify · now</p><p className="text-sm font-semibold">{text}</p></div></div><p className="mt-4 font-mono text-[9px] uppercase text-muted-foreground">Gesture: WAVE · From: Adarsh's PC</p><div className="mt-4 flex gap-2"><Button size="sm" onClick={() => setToast("Notification opened")}>Open</Button><Button size="sm" variant="ghost" onClick={() => setToast("Ignored. Brutal.")}>Ignore</Button></div></div>)}
+              {["Your mouse is moving by itself.","Someone took over your cursor."].map((text, i) => <div key={text} className="notification-in rounded-2xl border border-border bg-background p-5 shadow-panel" style={{ animationDelay: `${i * 180}ms` }}><div className="flex items-center gap-2"><span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground"><Activity size={16} /></span><div><p className="font-mono text-[9px] uppercase text-muted-foreground">Hand Notify · now</p><p className="text-sm font-semibold">{text}</p></div></div><p className="mt-4 font-mono text-[9px] uppercase text-muted-foreground">Action: MOVE · From: Adarsh's PC</p><div className="mt-4 flex gap-2"><Button size="sm" onClick={() => setToast("Control interrupted")}>Stop them</Button><Button size="sm" variant="ghost" onClick={() => setToast("Let them cook.")}>Let it happen</Button></div></div>)}
             </div>
           </div>
           <div className="col-span-12 rounded-3xl bg-foreground p-7 text-background lg:col-span-5">
@@ -311,7 +311,7 @@ function HandNotify() {
         <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
           <p className="console-label text-primary">Highly scientific</p><h2 className="mt-2 font-display text-4xl font-semibold">Completely Unnecessary Statistics</h2>
           <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-6">
-            {[['Hands waved','247'],['Notifications sent','83'],['Friends disturbed','19'],['Messages ignored','42'],['Typing avoided','3,821'],['Productivity','0%']].map(([label,value]) => <div key={label} className="rounded-2xl border border-border bg-card p-4 shadow-soft"><p className="console-label">{label}</p><p className="mt-3 font-display text-3xl font-semibold">{value}</p></div>)}
+            {[['Hands moved','247'],['Mouse clicks','83'],['Friends confused','19'],['Connections dropped','42'],['Mice avoided','3,821'],['Productivity','0%']].map(([label,value]) => <div key={label} className="rounded-2xl border border-border bg-card p-4 shadow-soft"><p className="console-label">{label}</p><p className="mt-3 font-display text-3xl font-semibold">{value}</p></div>)}
           </div>
           <div className="mt-4 grid gap-4 md:grid-cols-2"><div className="rounded-2xl bg-secondary p-5"><p className="console-label">Distance waved</p><p className="mt-2 font-display text-3xl font-semibold">12.7 metres</p><p className="mt-1 text-sm text-muted-foreground">Estimated total hand movement.</p></div><div className="rounded-2xl bg-primary p-5 text-primary-foreground"><p className="font-mono text-[10px] uppercase">Official conclusion</p><p className="mt-2 font-display text-2xl font-semibold">Congratulations. You successfully avoided typing.</p></div></div>
         </section>
@@ -321,7 +321,7 @@ function HandNotify() {
           <div className="relative mt-8 grid gap-3 md:grid-cols-4">
             <div className="absolute left-[12%] right-[12%] top-8 hidden border-t border-dashed border-primary/50 md:block" />
             {[
-              ["01","SEE","Webcam captures your hand.",Camera], ["02","UNDERSTAND","Computer vision recognizes the gesture.",Hand], ["03","SEND","The signal travels through local Wi-Fi.",Wifi], ["04","WAKE THEM UP","Their computer displays the notification.",Bell],
+              ["01","SEE","Webcam captures your hand.",Camera], ["02","UNDERSTAND","Computer vision tracks hand position.",Hand], ["03","SEND","The coordinates travel through local Wi-Fi.",Wifi], ["04","TAKE OVER","Their computer moves the mouse cursor.",Laptop],
             ].map(([n,title,copy,Icon]) => <div key={String(n)} className="relative z-10 rounded-2xl border border-border bg-background p-5"><span className="grid size-14 place-items-center rounded-full bg-secondary font-mono text-sm font-bold text-primary"><Icon size={20} /></span><p className="mt-5 font-mono text-[10px] text-primary">{n}</p><h3 className="mt-1 font-display text-lg font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{copy}</p></div>)}
           </div>
         </section>
@@ -331,7 +331,7 @@ function HandNotify() {
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <h3 className="font-display text-2xl font-semibold">1. On your friend's PC (Receiver)</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Download and run <code>RemoteHand.exe</code>. Click <strong>Start Receiver</strong> to listen for notifications.</p>
+              <p className="mt-2 text-sm text-muted-foreground">Download and run <code>RemoteHand.exe</code>. Click <strong>Start Receiver</strong> to allow remote mouse control.</p>
             </div>
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <h3 className="font-display text-2xl font-semibold">2. On your PC (Sender)</h3>
@@ -343,7 +343,7 @@ function HandNotify() {
             </div>
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <h3 className="font-display text-2xl font-semibold">4. Wave</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Stop typing. Start waving to send instant notifications over your local network.</p>
+              <p className="mt-2 text-sm text-muted-foreground">Stop touching your mouse. Start moving your hand in the air to control their cursor.</p>
             </div>
           </div>
         </section>
@@ -351,17 +351,17 @@ function HandNotify() {
         <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
           <div className="rounded-3xl bg-foreground px-5 py-5 text-background">
             <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-              {[['Camera','Active',Camera],['Hand tracking','Active',Hand],['Gesture model','Ready',Sparkles],['Local network','Connected',Network],['Friend','Online',Laptop],['Notification','Ready',Bell]].map(([label,status,Icon]) => <div key={String(label)}><Icon className="mb-3 size-4 text-primary" /><p className="font-mono text-[9px] uppercase text-background/40">{label}</p><p className="mt-1 flex items-center gap-2 text-xs font-semibold"><Dot /> {status}</p></div>)}
+              {[['Camera','Active',Camera],['Hand tracking','Active',Hand],['Control mode','Ready',Sparkles],['Local network','Connected',Network],['Friend','Online',Laptop],['Mouse hijack','Ready',Activity]].map(([label,status,Icon]) => <div key={String(label)}><Icon className="mb-3 size-4 text-primary" /><p className="font-mono text-[9px] uppercase text-background/40">{label}</p><p className="mt-1 flex items-center gap-2 text-xs font-semibold"><Dot /> {status}</p></div>)}
             </div>
           </div>
           <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1.2fr]">
             <div className="rounded-3xl bg-secondary p-6"><p className="console-label">AI hand mood</p><div className="mt-5 flex items-end justify-between"><div><p className="font-display text-4xl font-semibold">CONFUSED</p><p className="mt-2 text-sm text-muted-foreground">Reason: Excessive hand movement detected.</p></div><Activity className="size-10 text-primary" /></div></div>
-            <div className="rounded-3xl border border-border bg-card p-6"><div className="flex items-center justify-between"><p className="console-label">Recent activity</p><span className="font-mono text-[9px] text-primary">LIVE</span></div><div className="mt-4 space-y-3 font-mono text-[10px]"><p className="rounded-lg bg-secondary p-3 text-primary">{activity}</p><p>08:39 · Point gesture — quick ping sent</p><p>08:31 · Wave detected — notification ignored</p><p>08:25 · Open hand — important notification sent</p></div></div>
+            <div className="rounded-3xl border border-border bg-card p-6"><div className="flex items-center justify-between"><p className="console-label">Recent activity</p><span className="font-mono text-[9px] text-primary">LIVE</span></div><div className="mt-4 space-y-3 font-mono text-[10px]"><p className="rounded-lg bg-secondary p-3 text-primary">{activity}</p><p>08:39 · Pinch gesture — left click executed</p><p>08:31 · Hand moved — cursor repositioned</p><p>08:25 · Fist gesture — control paused</p></div></div>
           </div>
         </section>
 
         <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
-          <div className="rounded-3xl bg-primary p-8 text-primary-foreground sm:p-12"><p className="console-label text-primary-foreground/65">Ready when you are</p><h2 className="mt-3 max-w-3xl font-display text-5xl font-semibold leading-none">Stop Typing.<br />Start Waving.</h2><p className="mt-5 max-w-xl text-sm leading-6 text-primary-foreground/70">Hand Notify turns your webcam into the world's most unnecessary notification button.</p><Button onClick={() => scrollTo("dashboard")} className="mt-7 h-12 bg-foreground px-6 text-background hover:bg-foreground/85"><Radio /> Launch Hand Notify</Button><p className="mt-4 font-mono text-[9px] uppercase text-primary-foreground/60">Built with computer vision. Powered by Wi-Fi. Needed by absolutely nobody.</p></div>
+          <div className="rounded-3xl bg-primary p-8 text-primary-foreground sm:p-12"><p className="console-label text-primary-foreground/65">Ready when you are</p><h2 className="mt-3 max-w-3xl font-display text-5xl font-semibold leading-none">Stop Clicking.<br />Start Moving.</h2><p className="mt-5 max-w-xl text-sm leading-6 text-primary-foreground/70">Hand Notify turns your webcam into the world's most unnecessary remote mouse controller.</p><Button onClick={() => scrollTo("dashboard")} className="mt-7 h-12 bg-foreground px-6 text-background hover:bg-foreground/85"><Radio /> Launch Hand Notify</Button><p className="mt-4 font-mono text-[9px] uppercase text-primary-foreground/60">Built with computer vision. Powered by Wi-Fi. Needed by absolutely nobody.</p></div>
         </section>
       </main>
 
