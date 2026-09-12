@@ -365,7 +365,7 @@ function HandNotify() {
         </section>
       </main>
 
-      <footer className="mx-auto max-w-7xl px-5 pb-10 pt-5 sm:px-8"><div className="flex flex-col justify-between gap-5 border-t border-border pt-7 md:flex-row"><div><Logo /><p className="mt-3 text-xs text-muted-foreground">Advanced technology for getting someone's attention.</p></div><div className="flex flex-wrap gap-5 font-mono text-[10px] uppercase text-muted-foreground">{['Home','How It Works','Gestures','Dashboard','GitHub'].map(x => <a key={x} href={x === 'Home' ? '#top' : `#${x.toLowerCase().replaceAll(' ','-')}`} className="hover:text-primary">{x}</a>)}</div><p className="font-mono text-[10px] text-muted-foreground">© 2026 Hand Notify</p></div></footer>
+      <footer className="mx-auto max-w-7xl px-5 pb-10 pt-5 sm:px-8"><div className="flex flex-col justify-between gap-5 border-t border-border pt-7 md:flex-row"><div><Logo /><p className="mt-3 text-xs text-muted-foreground">Advanced technology for getting someone's attention.</p></div><div className="flex flex-wrap gap-5 font-mono text-[10px] uppercase text-muted-foreground">{['Home','How It Works','Gestures','Dashboard','GitHub'].map(x => <a key={x} href={x === 'GitHub' ? 'https://github.com/adarshsjc/useless_project_temp' : (x === 'Home' ? '#top' : `#${x.toLowerCase().replaceAll(' ','-')}`)} target={x === 'GitHub' ? '_blank' : undefined} rel={x === 'GitHub' ? 'noreferrer' : undefined} className="hover:text-primary">{x}</a>)}</div><p className="font-mono text-[10px] text-muted-foreground">© 2026 Hand Notify</p></div></footer>
     </div>
   );
 }
