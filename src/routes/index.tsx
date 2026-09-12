@@ -247,6 +247,25 @@ function HandNotify() {
           </div>
         </section>
 
+        <section id="demo" className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
+          <div className="section-heading">
+            <div>
+              <p className="console-label text-primary">Live Demo</p>
+              <h2>See It In Action</h2>
+            </div>
+          </div>
+          <div className="mt-6 overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
+            <video 
+              src="/demo.mp4" 
+              controls 
+              className="w-full h-auto aspect-video object-cover"
+              poster="/demo.mp4#t=0.1"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </section>
+
         <section id="dashboard" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-12 sm:px-8">
           <div className="section-heading"><div><p className="console-label text-primary">Console 01</p><h2>Live Hand Detection</h2></div><span className="hidden items-center gap-2 font-mono text-[10px] uppercase text-primary sm:flex"><Dot /> Tracking live</span></div>
           <div className="mt-6 grid grid-cols-12 gap-4">
