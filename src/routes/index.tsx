@@ -326,6 +326,28 @@ function HandNotify() {
           </div>
         </section>
 
+        <section id="installation" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-12 sm:px-8">
+          <p className="console-label text-primary">Getting Started</p><h2 className="mt-2 font-display text-4xl font-semibold">Installation & Usage</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <h3 className="font-display text-2xl font-semibold">1. On your friend's PC (Receiver)</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Download and run <code>RemoteHand.exe</code>. Click <strong>Start Receiver</strong> to listen for notifications.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <h3 className="font-display text-2xl font-semibold">2. On your PC (Sender)</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Download and run <code>RemoteHand.exe</code>. Click <strong>Start Sender</strong> to activate your webcam.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <h3 className="font-display text-2xl font-semibold">3. Ready</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Point your webcam at yourself and ensure you are clearly visible.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <h3 className="font-display text-2xl font-semibold">4. Wave</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Stop typing. Start waving to send instant notifications over your local network.</p>
+            </div>
+          </div>
+        </section>
+
         <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
           <div className="rounded-3xl bg-foreground px-5 py-5 text-background">
             <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
